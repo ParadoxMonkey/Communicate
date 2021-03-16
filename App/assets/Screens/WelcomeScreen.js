@@ -7,6 +7,7 @@ import {
   backgroundColor,
   KeyboardAvoidingView,
   TouchableNativeFeedback,
+  Button,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import * as Yup from "yup";
@@ -16,59 +17,22 @@ import AppButton from "../../components/AppButton";
 import colors from "../../config/colors";
 
 import { AppForm, AppFormField, SubmitButton } from "../../components/forms";
+import { useTranslation } from "react-i18next";
+import LanguageButton from "../../components/LanguageButton";
+import {
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 
 const validationSchema = Yup.object().shape({
   email: Yup.number().required().label("Phone Number"),
   password: Yup.string().required().min(4).label("Password"),
 });
 
-/*export const MyForm = ({navigation}) => (
-
-    <AppForm 
-        initialValues={{email: '', password: ''}}
-        onSubmit={(values) => console.log(values)}
-        validationSchema={validationSchema} >            
-     
-     <View style={styles.textInputContainer}>
-                <View style={styles.usernameInput}>
-                    <AppFormField
-                        placeholder='Phone Number' 
-                        color={colors.white} 
-                        placeholderColor={colors.medium} 
-                        icon='account' 
-                        autoCapitalize="none"
-                        keyboardType="number-pad"
-                        name="email"
-                          
-                        />
-                </View>
-                
-
-                <View style={styles.passwordInput}>
-                    <AppFormField 
-                        placeholder='Password' 
-                        color={colors.white} 
-                        placeholderColor={colors.medium} 
-                        icon='form-textbox-password'
-                        secureTextEntry={true}
-                        name="password"
-                        /> 
-                </View>
-                
-            </View>
-
-            
-            <View style={styles.buttonContainer}>
-                <SubmitButton title="Login" />                
-                <AppButton title="Sign Up"  />            
-
-            </View>      
-    
-    </AppForm>
-) */
-
 function WelcomeScreen() {
   const navigation = useNavigation();
+  const { t, i18n } = useTranslation();
+
   return (
     <ImageBackground
       style={styles.background}
@@ -76,8 +40,20 @@ function WelcomeScreen() {
     >
       <View style={styles.titleContainer}>
         <Text style={styles.titleWhite}>
-          Commu<Text style={styles.titleOrange}>nicate</Text>
+          {t("Commu")}
+          <Text style={styles.titleOrange}>{t("nicate")}</Text>
         </Text>
+      </View>
+
+      <View style={styles.changeLanguageButtonContainer}>
+        <Text style={styles.engChangeLabel}>Change Language</Text>
+        <LanguageButton
+          onPress={() =>
+            i18n.changeLanguage(i18n.language === "hi" ? "en" : "hi")
+          }
+          title={i18n.language === "en" ? "Change" : "बदलें"}
+        />
+        <Text style={styles.hindChangeLabel}>भाषा बदलें</Text>
       </View>
 
       <View style={styles.connectIconContainer}>
@@ -148,6 +124,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  changeLanguageButtonContainer: {
+    justifyContent: "center",
+    width: 150,
+    position: "absolute",
+    right: -10,
+    top: 115,
+  },
+
   connectIcon: {
     position: "absolute",
     bottom: 375,
@@ -158,6 +142,22 @@ const styles = StyleSheet.create({
   connectIconContainer: {
     flex: 1,
     alignItems: "center",
+  },
+
+  engChangeLabel: {
+    color: colors.primary,
+    fontSize: 12,
+    marginBottom: 7,
+    alignSelf: "center",
+    left: -30,
+  },
+
+  hindChangeLabel: {
+    color: colors.primary,
+    fontSize: 18,
+    marginTop: 5,
+    alignSelf: "center",
+    left: -30,
   },
 
   loginButton: {

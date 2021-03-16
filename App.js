@@ -23,6 +23,8 @@ import HowtoUseScreen from "./App/assets/HowtoUseScreen";
 import AppNavigator from "./App/navigation/AppNavigator";
 import AppStackNavigator from "./App/navigation/AppStackNavigator";
 import Demo from "./App/navigation/Demo";
+import "./App/i18n/index";
+import LanguageButton from "./App/components/LanguageButton";
 
 export default function App() {
   return (

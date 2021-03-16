@@ -7,8 +7,8 @@ import "./i18n";
 const resources = {
   en: {
     translation: {
-      Commu: "कम्यु",
-      nicate: "निकेट",
+      Commu: "Commu",
+      nicate: "Nicate",
     },
   },
   hi: {
