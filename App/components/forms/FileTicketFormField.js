@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Roboto",
     paddingVertical: 1,
-    color: "#695007",
+    color: "#8B2D3D",
   },
 
   input: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: "100%",
     borderColor: "black",
-    backgroundColor: "#d1d0cd",
+    backgroundColor: "#5BC0BE",
     borderWidth: 1,
     borderRadius: 25,
     paddingHorizontal: 15,

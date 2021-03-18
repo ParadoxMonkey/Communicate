@@ -32,6 +32,11 @@ const validationSchema = Yup.object().shape({
 function WelcomeScreen() {
   const navigation = useNavigation();
   const { t, i18n } = useTranslation();
+  const trans_pwd = t("Password");
+
+  const trans_phoneNumber = t("Phone_Number");
+  const trans_login = t("Login");
+  const trans_signUp = t("SignUp");
 
   return (
     <ImageBackground
@@ -51,7 +56,7 @@ function WelcomeScreen() {
           onPress={() =>
             i18n.changeLanguage(i18n.language === "hi" ? "en" : "hi")
           }
-          title={i18n.language === "en" ? "Change" : "बदलें"}
+          title={i18n.language === "hi" ? "Change" : "बदलें"}
         />
         <Text style={styles.hindChangeLabel}>भाषा बदलें</Text>
       </View>
@@ -73,7 +78,7 @@ function WelcomeScreen() {
         <View style={styles.textInputContainer}>
           <View style={styles.usernameInput}>
             <AppFormField
-              placeholder="Phone Number"
+              placeholder={trans_phoneNumber}
               color={colors.white}
               placeholderColor={colors.medium}
               icon="account"
@@ -85,7 +90,7 @@ function WelcomeScreen() {
 
           <View style={styles.passwordInput}>
             <AppFormField
-              placeholder="Password"
+              placeholder={trans_pwd}
               color={colors.white}
               placeholderColor={colors.medium}
               icon="form-textbox-password"
@@ -94,14 +99,13 @@ function WelcomeScreen() {
             />
           </View>
         </View>
-
         <View style={styles.buttonContainer}>
           <AppButton
-            title="Login"
+            title={trans_login}
             onPress={() => navigation.navigate("HomeScreen")}
           />
           <AppButton
-            title="Sign Up"
+            title={trans_signUp}
             onPress={() => navigation.navigate("SignUp")}
           />
         </View>

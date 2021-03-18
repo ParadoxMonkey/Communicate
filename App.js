@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   TextInput,
+  FlatList,
 } from "react-native";
 
 import WelcomeScreen from "./App/assets/Screens/WelcomeScreen";
@@ -25,6 +26,22 @@ import AppStackNavigator from "./App/navigation/AppStackNavigator";
 import Demo from "./App/navigation/Demo";
 import "./App/i18n/index";
 import LanguageButton from "./App/components/LanguageButton";
+import AccountList from "./App/components/forms/AccountListItem";
+
+const DATA = [
+  {
+    id: 1,
+    title: "Hello World",
+    description: "The holy cheese lord",
+    targetScreen: "How to Use this App",
+  },
+  {
+    id: 2,
+    title: "Hello World",
+    description: "The holy cheese lord",
+    targetScreen: "How to Use this App",
+  },
+];
 
 export default function App() {
   return (
@@ -33,15 +50,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  button: {
-    margin: 100,
-  },
-});

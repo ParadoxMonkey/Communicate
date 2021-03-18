@@ -2,41 +2,63 @@ import React from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
+import LanguageButton from "../../components/LanguageButton";
 
 import ListItem from "../../components/ListItem";
 import colors from "../../config/colors";
 
-const items = [
-  {
-    id: 1,
-    title: "Your Account",
-    description: "Access and edit your information",
-    image: require("../ReactNativeTestBackground.jpg"),
-    targetScreen: "HomeScreen",
-  },
-  {
-    id: 2,
-    title: "File a ticket",
-    description: "Tell us about a problem that you need help with",
-    image: require("../favicon.png"),
-    targetScreen: "File a New Ticket",
-  },
-  {
-    id: 3,
-    title: "How to use this app",
-    description:
-      "Click here if you need help understanding the functionalities of this app",
-    image: require("../icon.png"),
-    targetScreen: "How to Use this App",
-  },
-];
-
 function HomeScreen(props) {
   const navigation = useNavigation();
+  const { t, i18n } = useTranslation();
+
+  const trans_yourAccount = t("YourAccount");
+  const trans_yourAccountDesc = t("YourAccountDesc");
+
+  const trans_fileTicket = t("FileTicket");
+  const trans_fileTicketDesc = t("FileTicketDesc");
+
+  const trans_howToUse = t("HowToUse");
+  const trans_howToUseDesc = t("HowToUseDesc");
+
+  const items = [
+    {
+      id: 1,
+      title: t(trans_yourAccount),
+      description: t(trans_yourAccountDesc),
+      image: require("../ReactNativeTestBackground.jpg"),
+      targetScreen: "HomeScreen",
+    },
+    {
+      id: 2,
+      title: t(trans_fileTicket),
+      description: t(trans_fileTicketDesc),
+      image: require("../favicon.png"),
+      targetScreen: "File a New Ticket",
+    },
+    {
+      id: 3,
+      title: t(trans_howToUse),
+      description: t(trans_howToUseDesc),
+      image: require("../icon.png"),
+      targetScreen: "How to Use this App",
+    },
+  ];
 
   return (
     <View style={styles.background}>
-      <Text style={styles.headingText}>Home</Text>
+      <Text style={styles.headingText}>{t("Home")}</Text>
+
+      <View style={styles.changeLanguageButtonContainer}>
+        <Text style={styles.engChangeLabel}>Change Language</Text>
+        <LanguageButton
+          onPress={() =>
+            i18n.changeLanguage(i18n.language === "hi" ? "en" : "hi")
+          }
+          title={i18n.language === "hi" ? "Change" : "बदलें"}
+        />
+        <Text style={styles.hindChangeLabel}>भाषा बदलें</Text>
+      </View>
 
       <FlatList
         style={styles.list}
@@ -56,8 +78,6 @@ function HomeScreen(props) {
           />
         )}
       />
-
-      <View style={styles.bottomLine}></View>
     </View>
   );
 }
@@ -77,6 +97,22 @@ const styles = StyleSheet.create({
     bottom: 100,
   },
 
+  changeLanguageButtonContainer: {
+    justifyContent: "center",
+    width: 150,
+    position: "relative",
+    left: 250,
+    top: 5,
+  },
+
+  engChangeLabel: {
+    color: colors.primary,
+    fontSize: 12,
+    marginBottom: 7,
+    alignSelf: "center",
+    left: -30,
+  },
+
   headingText: {
     fontSize: 44,
     fontWeight: "700",
@@ -84,6 +120,14 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     textAlign: "center",
     marginTop: 10,
+  },
+
+  hindChangeLabel: {
+    color: colors.primary,
+    fontSize: 18,
+    marginTop: 5,
+    alignSelf: "center",
+    left: -30,
   },
 
   list: {},
